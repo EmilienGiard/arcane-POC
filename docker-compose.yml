@@ -1,0 +1,23 @@
+db:
+  environment:
+    POSTGRESQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    POSTGRESQL_DATABASE: arcane_poc
+  image: postgres:latest
+  volumes:
+  - /var/lib/postgresql
+server:
+  command: python src/server.py
+  environment:
+    IMPORT_PATH: /mnt/test/fixture
+    PYTHONPATH: $PYTHONPATH:src:utils/src
+    PYTHONUSERBASE: /mnt/vendor
+    SERVICE_LOG: server.log
+    DEBUG_MODE: 'True'
+  build: .
+  links:
+  - db
+  ports:
+  - 5000:5000
+  volumes:
+  - .:/mnt
+  working_dir: /mnt

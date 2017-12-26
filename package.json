@@ -1,0 +1,15 @@
+{
+  "name": "arcane-poc",
+  "version": "0.0.1",
+  "scripts": {
+    "db:connect": "docker exec -it arcanepoc_db_1 mysql -Uroot arcane_poc",
+    "db:upgrade": "docker-compose run --rm server python src/manage.py db upgrade",
+    "db:downgrade": "docker-compose run --rm server python src/manage.py db downgrade",
+    "db:migrate": "docker-compose run --rm server python src/manage.py db migrate",
+
+    "server:connect": "docker exec -it arcanepoc_server_1 bash",
+    "server:install": "docker-compose run --rm server pip install -r requirements.txt --user --upgrade",
+    "server:run": "docker-compose up server",
+    "server:daemon": "docker-compose up -d server",
+  }
+}
