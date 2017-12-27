@@ -60,6 +60,7 @@ Inclus dans l'application docker
 Run:
 ```
 npm run server:install
+npm run db:upgrade
 ```
 
 # Utilisation
@@ -68,4 +69,9 @@ npm run server:install
 npm run server:run
 ```
 
-Et vous pouvez aller à l'adresse `http://0.0.0.0:5000/arcane-poc/routes`
+Les routes disponibles sont:
+
+```
+http://0.0.0.0:5000/arcane-poc/user
+http://0.0.0.0:5000/arcane-poc/town
+```
