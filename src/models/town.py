@@ -15,7 +15,7 @@ class Town(db.Model, BaseModel):
 
     def __init__(self, name):
         """ Create a new town """
-        self.key = key
+        self.name = name
 
     def to_dict(self):
         """ Return a dict representation of the town model """
