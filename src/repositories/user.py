@@ -17,3 +17,17 @@ class UserRepository:
         """ Query all users """
         users = User.query.all()
         return users
+
+    def update(self, birth_date, id, name, password):
+        """ Update the user matching the given id """
+        user = self.get_by_id(id)
+        user.birth_date = birth_date
+        user.name = name
+        user.password = password
+        return user.save()
+
+    @staticmethod
+    def get_by_id(id):
+        """ Retrieve a user matching the given id """
+        user = User.query.filter_by(id=id).first()
+        return user
