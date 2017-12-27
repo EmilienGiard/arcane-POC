@@ -2,14 +2,30 @@
 Define the REST verbs relative to the user
 """
 
-from flask.ext.restful import Resource
 from flask.json import jsonify
+from flask import request
+from flask.ext.restful import Resource, inputs
+from flask.ext.restful.reqparse import Argument
+
+from repositories import UserRepository
+from util import parse_params
 
 
 class UserResource(Resource):
     """ Verbs relative to the list of users """
+    user_repository = UserRepository()
 
-    @staticmethod
-    def get():
+    def get(self):
         """ Get all users """
-        return 'Test env', 200
+        users = self.user_repository.get()
+        return jsonify({'users': [user.to_dict() for user in users]})
+
+    @parse_params(
+        Argument('birth_date', location='json', type=inputs.date, required=True),
+        Argument('name', location='json', type=str, required=True),
+        Argument('password', location='json', type=str, required=True),
+    )
+    def post(self, birth_date, name, password):
+        """ Create a user """
+        user = self.user_repository.create(birth_date, name, password)
+        return user.to_dict()
