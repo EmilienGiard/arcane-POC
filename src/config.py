@@ -9,11 +9,11 @@ PORT = 5000
 DB_CONTAINER = 'DB'
 
 DATABASE = {
-    'user': 'root',
+    'user': 'postgres',
     'pw': '',
     'host': DB_CONTAINER,
-    'port': 3306,
-    'db': 'arcane_poc',
+    'port': 5432,
+    'db': 'postgres',
 }
 
 DB_URI = 'postgresql://%(user)s:%(pw)s@%(host)s:%(port)s/%(db)s' % DATABASE
