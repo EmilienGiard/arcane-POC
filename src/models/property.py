@@ -13,6 +13,7 @@ class Property(db.Model, BaseModel):
     type = db.Column(db.String(50), nullable=True)
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
+    rooms = db.relationship('Room', backref='room')
     town_id = db.Column(db.Integer, db.ForeignKey('town.id'), nullable=False)
     owner_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
@@ -31,6 +32,7 @@ class Property(db.Model, BaseModel):
             'id': self.id,
             'name': self.name,
             'owner_id': self.owner_id,
+            'rooms': [room.to_dict() for room in self.rooms],
             'town_id': self.town_id,
             'type': self.type,
         }

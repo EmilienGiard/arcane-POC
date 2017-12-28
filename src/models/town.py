@@ -23,4 +23,5 @@ class Town(db.Model, BaseModel):
         return {
             'id': self.id,
             'name': self.name,
+            'properties': [property.to_dict() for property in self.properties],
         }
