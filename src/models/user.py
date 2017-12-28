@@ -11,8 +11,9 @@ class User(db.Model, BaseModel):
 
     birth_date = db.Column(db.DateTime, nullable=False)
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=True)
-    password = db.Column(db.String(100), nullable=True)
+    name = db.Column(db.String(100), nullable=False)
+    password = db.Column(db.String(100), nullable=False)
+    properties = db.relationship('Property', backref='property')
 
     def __init__(self, birth_date, name, password):
         """ Create a new user """

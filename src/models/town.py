@@ -12,6 +12,7 @@ class Town(db.Model, BaseModel):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
+    properties = db.relationship('Property', backref='property')
 
     def __init__(self, name):
         """ Create a new town """
