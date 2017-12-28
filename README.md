@@ -10,7 +10,7 @@ Les utilisateurs peuvent renseigner/modifier leurs informations personnelles sur
 
 Les utilisateurs peuvent consulter uniquement les biens d’une ville particulière
 
-Fonctionnalité bonus: Un propriétaire ne peut modifier que les caractéristiques de son bien sans avoir accès à l’édition des autres biens.
+Un propriétaire ne peut modifier que les caractéristiques de son bien sans avoir accès à l’édition des autres biens.
 
 # Prérequis
 
@@ -74,4 +74,6 @@ Les routes disponibles sont:
 ```
 http://0.0.0.0:5000/arcane-poc/user
 http://0.0.0.0:5000/arcane-poc/town
+http://0.0.0.0:5000/arcane-poc/town/id
+http://0.0.0.0:5000/arcane-poc/property
 ```
