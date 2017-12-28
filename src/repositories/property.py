@@ -46,12 +46,13 @@ class PropertyRepository:
     def update(self, id, description, name, owner_id, rooms, town_id, type):
         """ Update the property matching the given id """
         property = self.get_by_id(id)
-        property.description = description
-        property.name = name
-        property.owner_id = owner_id
-        property.town_id = town_id
-        property.type = type
-        property = self.update_property_rooms(property, rooms)
+        if property.owner_id == owner_id:
+            property.description = description
+            property.name = name
+            property.owner_id = owner_id
+            property.town_id = town_id
+            property.type = type
+            property = self.update_property_rooms(property, rooms)
         return property.save()
 
     def update_property_rooms(self, property, rooms):

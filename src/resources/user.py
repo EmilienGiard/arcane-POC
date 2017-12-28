@@ -3,7 +3,6 @@ Define the REST verbs relative to the user
 """
 
 from flask.json import jsonify
-from flask import request
 from flask.ext.restful import Resource, inputs
 from flask.ext.restful.reqparse import Argument
 
