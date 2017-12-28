@@ -26,7 +26,7 @@ class TownResource(Resource):
     def post(self, name):
         """ Create a town """
         town = self.town_repository.create(name)
-        return town.to_dict()
+        return jsonify({'town': town.to_dict()})
 
     @parse_params(
         Argument('id', location='json', type=int, required=True),
@@ -38,4 +38,13 @@ class TownResource(Resource):
             id=id,
             name=name,
         )
+        return jsonify({'town': town.to_dict()})
+
+class UniqueTownResource(Resource):
+    """ Verbs relative to a town """
+    town_repository = TownRepository()
+
+    def get(self, id):
+        """ Get all towns """
+        town = self.town_repository.get_by_id(id)
         return jsonify({'town': town.to_dict()})
