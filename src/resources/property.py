@@ -33,3 +33,24 @@ class PropertyResource(Resource):
             town_id=town_id,
             type=type)
         return property.to_dict()
+
+    @parse_params(
+        Argument('description', location='json', type=str, required=True),
+        Argument('id', location='json', type=int, required=True),
+        Argument('name', location='json', type=str, required=True),
+        Argument('owner_id', location='json', type=int, required=True),
+        Argument('rooms', location='json', type=list, required=True),
+        Argument('town_id', location='json', type=int, required=True),
+        Argument('type', location='json', type=str, required=True),
+    )
+    def put(self, description, id, name, owner_id, rooms, town_id, type):
+        """ Create a property """
+        property = self.property_repository.update(
+            description=description,
+            id=id,
+            name=name,
+            owner_id=owner_id,
+            rooms=rooms,
+            town_id=town_id,
+            type=type)
+        return property.to_dict()

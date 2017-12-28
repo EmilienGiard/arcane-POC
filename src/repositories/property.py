@@ -2,7 +2,7 @@
 
 from models import Property
 from repositories import RoomRepository
-import logging
+
 
 class PropertyRepository:
     """ The repository for the Property model """
@@ -39,6 +39,28 @@ class PropertyRepository:
             room = self.room_repository.create(
                 characteristic=room['characteristic'],
                 property_id=property.id,
+            )
+
+        return property
+
+    def update(self, id, description, name, owner_id, rooms, town_id, type):
+        """ Update the property matching the given id """
+        property = self.get_by_id(id)
+        property.description = description
+        property.name = name
+        property.owner_id = owner_id
+        property.town_id = town_id
+        property.type = type
+        property = self.update_property_rooms(property, rooms)
+        return property.save()
+
+    def update_property_rooms(self, property, rooms):
+        """ Create translations for a given property """
+
+        for room in rooms:
+            room = self.room_repository.update(
+                id=room['id'],
+                characteristic=room['characteristic'],
             )
 
         return property
