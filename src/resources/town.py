@@ -12,7 +12,7 @@ from util import parse_params
 
 
 class TownResource(Resource):
-    """ Verbs relative to the list of towns """
+    """ Verbs relative to the towns """
     town_repository = TownRepository()
 
     def get(self):

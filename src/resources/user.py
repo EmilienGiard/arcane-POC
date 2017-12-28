@@ -12,7 +12,7 @@ from util import parse_params
 
 
 class UserResource(Resource):
-    """ Verbs relative to the list of users """
+    """ Verbs relative to the users """
     user_repository = UserRepository()
 
     def get(self):
